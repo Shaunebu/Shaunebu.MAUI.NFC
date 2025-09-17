@@ -32,7 +32,7 @@
     <PackageIconUrl>https://github.com/Shaunebu/Shaunebu.MAUI.NFC/raw/master/art/nfc200.png</PackageIconUrl>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 
   </PropertyGroup>

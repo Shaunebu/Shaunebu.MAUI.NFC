@@ -1,5 +1,9 @@
 ﻿using Shaunebu.MAUI.NFC.Configuration;
 
+#if ANDROID
+using Android.Content;
+#endif
+
 namespace Shaunebu.MAUI.NFC;
 
 public delegate void NdefMessageReceivedEventHandler(ITagInfo tagInfo);
@@ -113,4 +117,13 @@ public interface INFC
     /// Event raised when NFC listener status changes
     /// </summary>
     event TagListeningStatusChangedEventHandler OnTagListeningStatusChanged;
+
+#if ANDROID
+    /// <summary>
+    /// Converts an Android Intent to TagInfo
+    /// </summary>
+    /// <param name="intent">Android NFC intent</param>
+    /// <returns>TagInfo or null</returns>
+    ITagInfo GetTagInfo(Intent intent);
+#endif
 }

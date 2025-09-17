@@ -1,4 +1,8 @@
 ﻿namespace Shaunebu.MAUI.NFC;
+#if ANDROID
+using Android.Content;
+#endif
+
 
 /// <summary>
 /// Cross NFC
@@ -64,4 +68,15 @@ public static partial class CrossNFC
     internal static Exception NotImplementedInReferenceAssembly() =>
         new NotImplementedException("This functionality is not implemented in the portable version of this assembly.  You should reference the NuGet package from your main application project in order to reference the platform-specific implementation.");
 
+#if ANDROID
+    /// <summary>
+    /// Converts an Android Intent to TagInfo (Android only)
+    /// </summary>
+    /// <param name="intent">Android NFC intent</param>
+    /// <returns>TagInfo or null</returns>
+    public static ITagInfo GetTagInfo(Intent intent)
+    {
+        return Current.GetTagInfo(intent);
+    }
+#endif
 }

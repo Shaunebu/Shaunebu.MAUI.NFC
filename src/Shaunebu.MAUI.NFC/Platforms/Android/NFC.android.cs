@@ -681,4 +681,35 @@ internal sealed class NFCImplementation_Android : INFC
             }
         }
     }
+
+    /// <summary>
+    /// Converts an Android Intent to TagInfo
+    /// </summary>
+    public ITagInfo GetTagInfo(Intent intent)
+    {
+        if (intent == null)
+            return null;
+
+        if (intent.Action != NfcAdapter.ActionNdefDiscovered &&
+            intent.Action != NfcAdapter.ActionTagDiscovered)
+            return null;
+
+        Java.Lang.Object? parcelable;
+
+        if (Android.OS.Build.VERSION.SdkInt >= Android.OS.BuildVersionCodes.Tiramisu)
+        {
+            parcelable = intent.GetParcelableExtra(NfcAdapter.ExtraTag, Java.Lang.Class.ForName("android.nfc.Tag"));
+        }
+        else
+        {
+            parcelable = intent.GetParcelableExtra(NfcAdapter.ExtraTag);
+        }
+
+        if (parcelable is Tag tag)
+        {
+            return GetTagInfo(tag);
+        }
+
+        return null;
+    }
 }
