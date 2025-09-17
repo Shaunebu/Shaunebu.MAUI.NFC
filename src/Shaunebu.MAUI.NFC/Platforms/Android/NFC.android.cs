@@ -683,6 +683,15 @@ internal sealed class NFCImplementation_Android : INFC
     }
 
     /// <summary>
+    /// Raises the OnMessageReceived event (for external use)
+    /// </summary>
+    /// <param name="tagInfo">Tag information</param>
+    public void RaiseMessageReceived(ITagInfo tagInfo)
+    {
+        OnMessageReceived?.Invoke(tagInfo);
+    }
+
+    /// <summary>
     /// Converts an Android Intent to TagInfo
     /// </summary>
     public ITagInfo GetTagInfo(Intent intent)
